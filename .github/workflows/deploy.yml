@@ -7,12 +7,12 @@ env:
 
 on:
   repository_dispatch:
-    types: [ deploy-production-event, deploy-development-event ]
-  create:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    types: [ deploy-event ]
+#  create:
+#  push:
+#    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
 
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: bootiful-podcast/bootiful-podcast-action@latest
+      - uses: bootiful-podcast/bootiful-podcast-action@v5
         with:
           who-to-greet: 'Mona the Octocat'
 

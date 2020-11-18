@@ -5,6 +5,14 @@ set -e
 echo "Loaded repository utils"
 
 function deploy_system_app() {
+
+
+  ## fetch the latest version and rewrite the build file
+  VERSION=$(curl https://raw.githubusercontent.com/bootiful-podcast/bootiful-podcast-action/main/version )
+  $(dirname $0)/replace_version.py $VERSION
+  git commit -am updating\ version\ to\ $VERSION
+  git push
+
   APP_NAME=bootiful-podcast-action-test
   echo "Deploying $APP_NAME to environment $BP_MODE_LOWERCASE "
 
@@ -16,7 +24,7 @@ function deploy_system_app() {
 
   echo "Trying to invoke the deployment for ${APP_NAME}."
 
-  PAYLOAD='{"event_type":"deploy-development-event"}'
+  PAYLOAD='{"event_type":"deploy-event"}'
 
 #  if [ "$BP_MODE_LOWERCASE" = "production" ]; then
 #    PAYLOAD='{"event_type":"deploy-production-event"}'
