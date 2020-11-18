@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: bootiful-podcast/bootiful-podcast-action@v5
+      - uses: bootiful-podcast/bootiful-podcast-action@v6
         with:
           who-to-greet: 'Mona the Octocat'
 
