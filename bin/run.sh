@@ -26,3 +26,4 @@ function deploy_system_app() {
       -H "Authorization: token ${GH_PERSONAL_ACCESS_TOKEN}" https://api.github.com/repos/bootiful-podcast/${APP_NAME}/dispatches -d $PAYLOAD )
 }
 
+deploy_system_app
