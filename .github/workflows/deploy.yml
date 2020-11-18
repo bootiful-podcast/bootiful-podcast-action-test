@@ -1,4 +1,4 @@
-name: Test custom action works
+name: action-test
 
 env:
   CONFIGURATION_SERVER_USERNAME: ${{ secrets.CONFIGURATION_SERVER_USERNAME }}
