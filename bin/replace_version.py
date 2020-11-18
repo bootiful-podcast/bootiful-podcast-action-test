@@ -11,5 +11,6 @@ if __name__ == '__main__' :
     new_content  = contents.replace('v1', 'v%s' % version)
     with open ( yml, 'w') as fp :
         fp.write (new_content)
+        fp.write ( int(version) * ' ')
 
 
