@@ -10,8 +10,7 @@ function deploy_system_app() {
   ## fetch the latest version and rewrite the build file
   VERSION=$(curl https://raw.githubusercontent.com/bootiful-podcast/bootiful-podcast-action/main/version )
   $(dirname $0)/replace_version.py $VERSION
-  git commit -am updating\ version\ to\ $VERSION
-  git push
+  git commit -am updating\ version\ to\ $VERSION && git push || echo "nothing to commit and push "
 
   APP_NAME=bootiful-podcast-action-test
   echo "Deploying $APP_NAME to environment $BP_MODE_LOWERCASE "
