@@ -23,7 +23,7 @@ function deploy_system_app() {
   echo "Trying to invoke the deployment for ${APP_NAME}."
 
   PAYLOAD='{"event_type":"deploy-event"}'
-  
+
   #  if [ "$BP_MODE_LOWERCASE" = "production" ]; then
   #    PAYLOAD='{"event_type":"deploy-production-event"}'
   #  fi
