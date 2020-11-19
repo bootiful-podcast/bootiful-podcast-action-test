@@ -23,9 +23,6 @@ if __name__ == '__main__':
     matches = []
 
     for result in re.findall(r'bootiful-podcast-action@v.*?\w', contents):
-        # print('----')
-        # print(result)
-        # print(type(result))
         matches.append(result)
 
     assert len(matches) == 1, 'there should only be one match!'
