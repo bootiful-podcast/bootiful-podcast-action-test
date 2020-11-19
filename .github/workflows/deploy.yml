@@ -19,9 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+#      - uses: actions/checkout@v2
 
-      - uses: bootiful-podcast/bootiful-podcast-action@v10
+      - uses: bootiful-podcast/bootiful-podcast-action@v100
         with:
           who-to-greet: 'Mona the Octocat'
 
