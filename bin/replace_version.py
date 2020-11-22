@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     matches = []
 
-    for result in re.findall(r'bootiful-podcast-action@v\d+\w', contents):
+    for result in re.findall(r'config-client-github-action@v\d+\w', contents):
         matches.append(result)
 
     assert len(matches) == 1, 'there should only be one match!'

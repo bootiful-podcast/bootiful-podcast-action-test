@@ -4,24 +4,15 @@ env:
   CONFIGURATION_SERVER_USERNAME: ${{ secrets.CONFIGURATION_SERVER_USERNAME }}
   CONFIGURATION_SERVER_PASSWORD: ${{ secrets.CONFIGURATION_SERVER_PASSWORD }}
 
-
 on:
   repository_dispatch:
     types: [ deploy-event ]
-#  create:
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-#      - uses: actions/checkout@v2
-
-      - uses: bootiful-podcast/bootiful-podcast-action@v26
+      - uses: joshlong/bootiful-podcast-action@v26
         with:
           config-server-uri: http://34.71.92.231
           config-server-username: ${{ secrets.CONFIGURATION_SERVER_USERNAME  }}
