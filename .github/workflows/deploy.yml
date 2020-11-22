@@ -28,4 +28,5 @@ jobs:
       - name: "Setup Initial Environment"
         run: |
           echo "Hello, world"
+          echo "$MESSAGE"
       
