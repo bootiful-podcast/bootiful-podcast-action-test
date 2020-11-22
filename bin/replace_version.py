@@ -29,6 +29,6 @@ if __name__ == '__main__':
 
     assert len(matches) == 1, 'there should only be one match!'
     print('Going to update deploy.yml to use version %s of the bootiful-podcast-action. ' % version)
-    new_content = contents.replace(matches[0], 'bootiful-podcast-action@v%s' % version)
+    new_content = contents.replace(matches[0], 'config-client-github-action@v%s' % version)
     with open(yml, 'w') as fp:
         fp.write(new_content)
