@@ -3,6 +3,8 @@ name: action-test
 env:
   CONFIGURATION_SERVER_USERNAME: ${{ secrets.CONFIGURATION_SERVER_USERNAME }}
   CONFIGURATION_SERVER_PASSWORD: ${{ secrets.CONFIGURATION_SERVER_PASSWORD }}
+  TEST_MESSAGE_DEVELOPMENT: "this is the development test"
+  TEST_MESSAGE_PRODUCTION: "this is the production test"
 
 on:
   repository_dispatch:
@@ -12,6 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: bootiful-podcast/bp-mode-github-action@v34
+      
       - uses: joshlong/config-client-github-action@v29
         with:
           config-server-uri: http://34.71.92.231
@@ -22,5 +26,8 @@ jobs:
 
       - name: "Echo"
         run: |
+          echo $BP_MODE 
+          echo $BP_MODE_LOWERCASE
           echo $BP_API_USERNAME
+          echo $TEST_MESSAGE
       
