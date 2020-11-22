@@ -21,13 +21,13 @@ jobs:
     steps:
 #      - uses: actions/checkout@v2
 
-      - uses: bootiful-podcast/bootiful-podcast-action@v23
+      - uses: bootiful-podcast/bootiful-podcast-action@v24
         with:
-          who-to-greet: 'Mona the Octocat'
+          config-server-uri: ${{ secrets.CONFIGURATION_SERVER_URI }}
+          config-server-username: ${{ secrets.CONFIGURATION_SERVER_USERNAME  }}
+          config-server-password: ${{ secrets.CONFIGURATION_SERVER_PASSWORD  }}
 
-      - name: "Setup Initial Environment"
+      - name: "Echo"
         run: |
-          echo "Hello, world"
-          echo "$MESSAGE"
           echo $BP_API_USERNAME
       
