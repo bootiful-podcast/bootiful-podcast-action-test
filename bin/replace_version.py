@@ -10,7 +10,7 @@ if __name__ == '__main__':
     version = 1
     try:
         with urllib.request.urlopen(
-                'https://raw.githubusercontent.com/bootiful-podcast/bootiful-podcast-action/main/version') as f:
+                'https://raw.githubusercontent.com/bootiful-podcast/bp-mode-github-action/main/version') as f:
             c = f.read().decode('utf-8').strip()
             print('the value is ', c)
             version=int(c)
@@ -23,12 +23,11 @@ if __name__ == '__main__':
     contents: str = open(yml, 'r').read()
 
     matches = []
-
-    for result in re.findall(r'config-client-github-action@v\d+\w', contents):
+    action_name = 'bp-mode-github-action'
+    for result in re.findall(r'%s@v\d+\w'  % action_name , contents):
         matches.append(result)
 
     assert len(matches) == 1, 'there should only be one match!'
-    print('Going to update deploy.yml to use version %s of the bootiful-podcast-action. ' % version)
-    new_content = contents.replace(matches[0], 'config-client-github-action@v%s' % version)
+    new_content = contents.replace(matches[0], '%s@v%s' % (action_name, version))
     with open(yml, 'w') as fp:
         fp.write(new_content)
