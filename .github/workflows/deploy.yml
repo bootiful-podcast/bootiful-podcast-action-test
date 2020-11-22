@@ -23,7 +23,7 @@ jobs:
 
       - uses: bootiful-podcast/bootiful-podcast-action@v25
         with:
-          config-server-uri: ${{ secrets.CONFIGURATION_SERVER_URI }}
+          config-server-uri: http://34.71.92.231
           config-server-username: ${{ secrets.CONFIGURATION_SERVER_USERNAME  }}
           config-server-password: ${{ secrets.CONFIGURATION_SERVER_PASSWORD  }}
           config-server-application-id: deployment
