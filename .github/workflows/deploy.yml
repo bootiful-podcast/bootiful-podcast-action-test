@@ -26,6 +26,8 @@ jobs:
           config-server-uri: ${{ secrets.CONFIGURATION_SERVER_URI }}
           config-server-username: ${{ secrets.CONFIGURATION_SERVER_USERNAME  }}
           config-server-password: ${{ secrets.CONFIGURATION_SERVER_PASSWORD  }}
+          config-server-application-id: deployment
+          config-server-profile: development
 
       - name: "Echo"
         run: |
