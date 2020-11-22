@@ -11,7 +11,9 @@ if __name__ == '__main__':
     try:
         with urllib.request.urlopen(
                 'https://raw.githubusercontent.com/bootiful-podcast/bootiful-podcast-action/main/version') as f:
-            version = int(f.read().decode('utf-8').strip())
+            c = f.read().decode('utf-8').strip()
+            print('the value is ', c)
+            version=int(c)
     except urllib.error.URLError as e:
         print(e.reason)
     assert version != 1, 'the version should be higher than 1'
