@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: joshlong/config-client-github-action@v26
+      - uses: joshlong/config-client-github-action@v29
         with:
           config-server-uri: http://34.71.92.231
           config-server-username: ${{ secrets.CONFIGURATION_SERVER_USERNAME  }}
