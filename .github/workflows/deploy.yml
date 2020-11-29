@@ -8,7 +8,11 @@ env:
 
 on:
   repository_dispatch:
-    types: [ deploy-event ]
+    types: [ deploy-event ]  
+  push:
+    branches: 
+      - master
+
 
 jobs:
   build:
