@@ -21,7 +21,7 @@ jobs:
 
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
-          waitlist: configuration
+          waitlist: "config"
 
 
 #
