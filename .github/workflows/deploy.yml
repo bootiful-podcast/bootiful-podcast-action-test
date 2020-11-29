@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: joshlong/kubernetes-waiter-github-action@master
+      - uses: joshlong/kubernetes-waiter-github-action@main
         with:
           waitlist: configuration
 
