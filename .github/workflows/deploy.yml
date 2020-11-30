@@ -59,11 +59,17 @@ jobs:
           echo "rm ~/kubeconfig "
           echo $KC | base64 -d > ~/.kube/config
           echo "ran base64 -d ... "
+
+          echo 'KUBE_CONFIG<<EOF' >> $GITHUB_ENV
+          echo $KC >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
           kubectl get all
+
 #          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
 #          echo $KUBE_CONFIG >> $GITHUB_ENV
 #          echo 'EOF' >> $GITHUB_ENV
-#
+
 
 #      - uses: joshlong/kubernetes-waiter-github-action@main
 #        with:
