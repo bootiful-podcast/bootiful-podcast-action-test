@@ -19,12 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
           waitlist: "configuration"
-
-
 
 
 #
