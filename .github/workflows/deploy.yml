@@ -58,15 +58,9 @@ jobs:
 #          echo 'EOF' >> $GITHUB_ENV
       - run: |
           kubectl get all
-          MY_STRING=$( cat ${HOME}/.kube/config )
           echo "MY_STRING<<EOF" >> $GITHUB_ENV
-          echo "$MY_STRING" >> $GITHUB_ENV
+          cat ${HOME}/.kube/config  >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-
-
-#          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
-#          echo $KUBE_CONFIG >> $GITHUB_ENV
-#          echo 'EOF' >> $GITHUB_ENV
 
       - run: |
           echo $MY_STRING
