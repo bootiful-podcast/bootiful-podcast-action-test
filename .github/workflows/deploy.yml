@@ -49,6 +49,12 @@ jobs:
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
           kubectl version
+          echo "------------------------------------------------------------"
+          cat ~/.kube/config | grep -v token  | grep -v certifi
+          echo "------------------------------------------------------------"
+          cat ${GITHUB_WORKSPACE}/.kube/config | grep -v token  | grep -v certifi
+
+
 
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
