@@ -58,7 +58,7 @@ jobs:
           echo $KC >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
-          kubectl get all
+
 
 #          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
 #          echo $KUBE_CONFIG >> $GITHUB_ENV
@@ -67,6 +67,8 @@ jobs:
       - run: |
           echo $KUBE_CONFIG
           echo "end"
+          echo $KUBE_CONFIG > ~/.kube/config
+          kubectl get all
 
 #      - uses: joshlong/kubernetes-waiter-github-action@main
 #        with:
