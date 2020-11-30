@@ -58,8 +58,12 @@ jobs:
 #          echo 'EOF' >> $GITHUB_ENV
       - run: |
           kubectl get all
+          MY_STRING=$( cat ${HOME}/.kube/config )
+          MY_STRING="${MY_STRING//'%'/'%25'}"
+          MY_STRING="${MY_STRING//$'\n'/'%0A'}"
+          MY_STRING="${MY_STRING//$'\r'/'%0D'}"
           echo "MY_STRING<<EOF" >> $GITHUB_ENV
-          cat ${HOME}/.kube/config  >> $GITHUB_ENV
+          echo "$MY_STRING" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - run: |
