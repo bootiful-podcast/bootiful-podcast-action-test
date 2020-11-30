@@ -53,11 +53,13 @@ jobs:
           cat ~/.kube/config | grep -v token  | grep -v certifi
           echo "------------------------------------------------------------"
           cat ${GITHUB_WORKSPACE}/.kube/config | grep -v token  | grep -v certifi
-
+          KUBE_CONFIG=$( cat ~/.kube/config | base64 )
+          echo "KUBE_CONFIG=$KUBE_CONFIG" >> $GITHUB_ENV
 
 
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
+          kubeconfig : ${{ env.KUBE_CONFIG }}
           waitlist: "configuration"
 
 
