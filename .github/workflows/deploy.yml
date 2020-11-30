@@ -50,10 +50,11 @@ jobs:
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
 
       - run: |
-          KUBE_CONFIG=$( cat ${HOME}/.kube/config | base64  )
-          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
-          echo $KUBE_CONFIG >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
+          echo "KUBE_CONFIG=$( cat ${HOME}/.kube/config | base64  )" >> $GITHUB_ENV
+#          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
+#          echo $KUBE_CONFIG >> $GITHUB_ENV
+#          echo 'EOF' >> $GITHUB_ENV
+#
 
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
