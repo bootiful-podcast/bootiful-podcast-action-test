@@ -5,13 +5,26 @@ env:
   CONFIGURATION_SERVER_PASSWORD: ${{ secrets.CONFIGURATION_SERVER_PASSWORD }}
   TEST_MESSAGE_DEVELOPMENT: "this is the development test"
   TEST_MESSAGE_PRODUCTION: "this is the production test"
+  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  GCLOUD_ZONE_DEVELOPMENT: ${{ secrets.GCLOUD_ZONE_DEVELOPMENT }}
+  GCLOUD_ZONE_PRODUCTION: ${{ secrets.GCLOUD_ZONE_DEVELOPMENT }}
+  GCLOUD_PROJECT_DEVELOPMENT: ${{ secrets.GCLOUD_PROJECT_DEVELOPMENT }}
+  GCLOUD_PROJECT_PRODUCTION: ${{ secrets.GCLOUD_PROJECT_DEVELOPMENT }}
+  GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
+  GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  CONFIGURATION_SERVER_URI_PRODUCTION: https://configuration.bootifulpodcast.fm
+  CONFIGURATION_SERVER_URI_DEVELOPMENT: https://configuration.development.bootifulpodcast.fm
+  GKE_CLUSTER_NAME_PRODUCTION: bootiful-podcast-production
+  GKE_CLUSTER_NAME_DEVELOPMENT: bootiful-podcast-development
 
 
 on:
   repository_dispatch:
-    types: [ deploy-event ]  
+    types: [ deploy-event ]
   push:
-    branches: 
+    branches:
       - main
 
 
@@ -19,6 +32,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+      - uses: actions/checkout@v2
+
+      - uses: bootiful-podcast/bp-mode-github-action@v34
+
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GCLOUD_SA_KEY }}
+          project_id: ${{ env.GCLOUD_PROJECT }}
+          export_default_credentials: true
+
+      - run: |
+          gcloud config set project $GCLOUD_PROJECT
+          gcloud --quiet auth configure-docker
+          gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
+
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
           waitlist: "configuration"
