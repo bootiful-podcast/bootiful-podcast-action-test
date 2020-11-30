@@ -52,14 +52,8 @@ jobs:
       - run: |
           kubectl get all
           export KC=$( cat ${HOME}/.kube/config | base64  )
-          echo "exported KC.."
-          # echo "export KUBE_CONFIG=$KC" >> $GITHUB_ENV
-          echo "exported KC to GH_ENV.."
           rm ~/.kube/config
           echo "rm ~/kubeconfig "
-          echo $KC | base64 -d > ~/.kube/config
-          echo "ran base64 -d ... "
-
           echo 'KUBE_CONFIG<<EOF' >> $GITHUB_ENV
           echo $KC >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
@@ -70,6 +64,9 @@ jobs:
 #          echo $KUBE_CONFIG >> $GITHUB_ENV
 #          echo 'EOF' >> $GITHUB_ENV
 
+      - run: |
+          echo $KUBE_CONFIG
+          echo "end"
 
 #      - uses: joshlong/kubernetes-waiter-github-action@main
 #        with:
