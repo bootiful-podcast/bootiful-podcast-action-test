@@ -50,11 +50,13 @@ jobs:
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
 
       - run: |
+          kubectl get pods
           echo KUBE_CONFIG_DATA="$(base64 -w 0 ~/.kube/config)" >> $GITHUB_ENV
+          rm -rf ~/.kube/config
 
-#      - run: |
-#          echo $KUBE_CONFIG_DATA | base64 -d  > ~/.kube/config
-#          kubectl get all
+      - run: |
+          echo $KUBE_CONFIG_DATA | base64 -d  > ~/.kube/config
+          kubectl get all
 
       - uses: joshlong/kubernetes-waiter-github-action@main
         with:
