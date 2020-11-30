@@ -67,7 +67,7 @@ jobs:
       - run: |
           echo $KUBE_CONFIG
           echo "end"
-          echo $KUBE_CONFIG > ~/.kube/config
+          echo $KUBE_CONFIG | base64 -d > ~/.kube/config
           kubectl get all
 
 #      - uses: joshlong/kubernetes-waiter-github-action@main
