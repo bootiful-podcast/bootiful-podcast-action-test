@@ -49,15 +49,19 @@ jobs:
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
 
+
+#          export KC=$( cat ${HOME}/.kube/config | base64  )
+#          rm ~/.kube/config
+#          echo "rm ~/.kube/config "
+#          echo 'KUBE_CONFIG<<EOF' >> $GITHUB_ENV
+#          echo $KC >> $GITHUB_ENV
+#          echo 'EOF' >> $GITHUB_ENV
       - run: |
           kubectl get all
-          export KC=$( cat ${HOME}/.kube/config | base64  )
-          rm ~/.kube/config
-          echo "rm ~/kubeconfig "
-          echo 'KUBE_CONFIG<<EOF' >> $GITHUB_ENV
-          echo $KC >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-
+          MY_STRING=$( cat ${HOME}/.kube/config )
+          echo "MY_STRING<<EOF" >> $GITHUB_ENV
+          echo "$MY_STRING" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
 
 #          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
@@ -65,9 +69,9 @@ jobs:
 #          echo 'EOF' >> $GITHUB_ENV
 
       - run: |
-          echo $KUBE_CONFIG
+          echo $MY_STRING
           echo "end"
-          echo $KUBE_CONFIG | base64 -d > ~/.kube/config
+          echo $MY_STRING   > ~/.kube/config
           kubectl get all
 
 #      - uses: joshlong/kubernetes-waiter-github-action@main
