@@ -50,17 +50,16 @@ jobs:
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
 
       - run: |
-          #echo ::set-env name=KUBE_CONFIG_DATA::$(base64 -w 0 ~/.kube/config)
           echo KUBE_CONFIG_DATA="$(base64 -w 0 ~/.kube/config)" >> $GITHUB_ENV
 
-      - run: |
-          echo $KUBE_CONFIG_DATA | base64 -d  > ~/.kube/config
-          kubectl get all
+#      - run: |
+#          echo $KUBE_CONFIG_DATA | base64 -d  > ~/.kube/config
+#          kubectl get all
 
-#      - uses: joshlong/kubernetes-waiter-github-action@main
-#        with:
-#          kubeconfig : ${{ env.KUBE_CONFIG }}
-#          waitlist: "configuration"
+      - uses: joshlong/kubernetes-waiter-github-action@main
+        with:
+          kubeconfig : ${{ env.KUBE_CONFIG_DATA }}
+          waitlist: "configuration"
 
       - uses: bootiful-podcast/bp-mode-github-action@v34
 #
