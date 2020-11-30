@@ -61,10 +61,10 @@ jobs:
 #          echo 'EOF' >> $GITHUB_ENV
 #
 
-      - uses: joshlong/kubernetes-waiter-github-action@main
-        with:
-          kubeconfig : ${{ env.KUBE_CONFIG }}
-          waitlist: "configuration"
+#      - uses: joshlong/kubernetes-waiter-github-action@main
+#        with:
+#          kubeconfig : ${{ env.KUBE_CONFIG }}
+#          waitlist: "configuration"
 
 
 
