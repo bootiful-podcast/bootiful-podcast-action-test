@@ -50,7 +50,12 @@ jobs:
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
 
       - run: |
-          echo "KUBE_CONFIG=$( cat ${HOME}/.kube/config | base64  )" >> $GITHUB_ENV
+          kubectl get all
+          export KC=$( cat ${HOME}/.kube/config | base64  )
+          echo "export KUBE_CONFIG=$KC" >> $GITHUB_ENV
+          rm ~/.kube/config
+          echo $KC | base64 -d > ~/.kube/config
+          kubectl get all
 #          echo 'KUBE_CONFIG=<<EOF' >> $GITHUB_ENV
 #          echo $KUBE_CONFIG >> $GITHUB_ENV
 #          echo 'EOF' >> $GITHUB_ENV
